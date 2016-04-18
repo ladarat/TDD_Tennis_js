@@ -10,28 +10,25 @@ describe("Tennis", function() {
     });
 
     var testData = [
-        {
+        {   
+            testName : "should show FIFTEEN LOVE when player A win first point",
             playerAScore : 1,
             playerBScore : 0,
             result : "FIFTEEN LOVE"
         },
         {
+            testName : "should show LOVE FIFTEEN when player B win",
             playerAScore : 0,
             playerBScore : 1,
             result : "LOVE FIFTEEN"
-        }
-    ]
+        },
 
-    it("should show FIFTEEN LOVE when player A win first point", function() {
-        playerAGetPoint(testData[0].playerAScore);
-        playerBGetPoint(testData[0].playerBScore);
-        expect(tennis.score()).toEqual(testData[0].result);
-    });
-
-    it("should show LOVE FIFTEEN when player B win", function() {
-        playerAGetPoint(testData[1].playerAScore);
-        playerBGetPoint(testData[1].playerBScore);
-        expect(tennis.score()).toEqual(testData[1].result);
+    ].forEach(function(element){
+        it(element.testName, function() {
+            playerAGetPoint(element.playerAScore);
+            playerBGetPoint(element.playerBScore);
+            expect(tennis.score()).toEqual(element.result);
+        });
     });
 
     it("should show FIFTEEN FIFTEEN when player A win one point and player B win one point", function() {
