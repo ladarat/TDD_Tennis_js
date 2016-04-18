@@ -17,7 +17,7 @@ function Tennis(){
         });
         return score;
         
-    }
+    };
 
     function isUndefined(valueScore){
         return valueScore == undefined;

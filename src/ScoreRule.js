@@ -12,7 +12,7 @@ function ScoreRule(){
             textScoreB = scoreMap[scoreB];
             return textScoreA + " " + textScoreB;
         }  
-    }
+    };
 
     function isScoreLessThan4(scoreA, scoreB){
         return scoreA < 4 && scoreB < 4 && !dueceRule.isDuece(scoreA, scoreB);

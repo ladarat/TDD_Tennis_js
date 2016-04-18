@@ -14,7 +14,7 @@ function TiebreakRule(){
                 return "PLAYER B WIN";
             }
         }
-    }
+    };
 
     function isTiebreak(scoreA, scoreB){
         return scoreA > 3 || scoreB > 3;
