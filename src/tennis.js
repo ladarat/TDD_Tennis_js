@@ -1,10 +1,12 @@
 function Tennis(){
-   this.scoreA = 0;
-   this.scoreB = 0;
+    var scoreA = 0;
+    var scoreB = 0;
+   this.isScoreLessThan4 = isScoreLessThan4;
+
 
     this.score = function() {
-        var scoreA = "";
-        var scoreB = "";
+        var textScoreA = "";
+        var textScoreB = "";
         var scoreMap = {
             0: "LOVE",
             1: "FIFTEEN",
@@ -12,38 +14,69 @@ function Tennis(){
             3: "FORTY"
         };        
 
-        if(this.scoreA === this.scoreB  && this.scoreA >= 3){
+        if(isDuece()){
             return "DUECE";
         }
 
-        if(this.scoreA > 3 || this.scoreB > 3){
-            var scoreDiff = this.scoreA - this.scoreB;
-            if(scoreDiff === 1){
+        if(this.isTiebreak()){
+            if(this.isPlayerAAVD()){
                 return "PLAYER A ADV";
             }
-            if(scoreDiff === -1){
+            if(this.isPlayerBAVD()){
                 return "PLAYER B ADV";
             }
-            if(scoreDiff > 1){
+            if(this.isPlayerAWin()){
                 return "PLAYER A WIN";
             }
-            if(scoreDiff < -1){
+            if(this.isPlayerBWin()){
                 return "PLAYER B WIN";
             }
         }
 
-        if(this.scoreA < 4 && this.scoreB < 4){
-            scoreA = scoreMap[this.scoreA];
-            scoreB = scoreMap[this.scoreB];
-            return scoreA + " " + scoreB;
+        if(this.isScoreLessThan4()){
+            textScoreA = scoreMap[scoreA];
+            textScoreB = scoreMap[scoreB];
+            return textScoreA + " " + textScoreB;
         }
     }
 
-    this.playerAWin = function() {
-        this.scoreA += 1;
+    function isDuece(){
+        return scoreA === scoreB  && scoreA >= 3;
+    }
+
+    this.isTiebreak = function(){
+        return scoreA > 3 || scoreB > 3;
+    }
+
+    this.isPlayerAAVD = function(){
+        return this.scoreADiffB() === 1;
+    }
+
+    this.isPlayerBAVD = function(){
+        return this.scoreADiffB() === -1;
+    }
+
+    this.isPlayerAWin = function(){
+        return this.scoreADiffB() > 1;
+    }
+
+    this.isPlayerBWin = function(){
+        return this.scoreADiffB() < -1;
+    }
+
+    function isScoreLessThan4(){
+        return scoreA < 4 && scoreB < 4;
+    }
+
+    this.scoreADiffB = function(){
+        return scoreA - scoreB;
+    }
+
+    this.playerAWonPoint = function() {
+        scoreA += 1;
     };
 
-    this.playerBWin = function () {
-        this.scoreB += 1;
+    this.playerBWonPoint = function () {
+        scoreB += 1;
     };
 }

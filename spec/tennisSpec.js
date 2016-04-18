@@ -151,22 +151,15 @@ describe("Tennis", function() {
         });
     });
 
-    it("should show THIRTY FIFTEEN when A win 1 ponit and B win 1 point then A win 1 point again", function() {
-        playerAGetPoint(1);
-        playerBGetPoint(1);
-        playerAGetPoint(1);
-        expect(tennis.score()).toEqual("THIRTY FIFTEEN");
-    });
-
     function playerAGetPoint(point){
         for(var i = 0 ; i < point ; i++){
-            tennis.playerAWin();
+            tennis.playerAWonPoint();
         }
     }
 
     function playerBGetPoint(point){
         for(var i = 0 ; i < point ; i++){
-            tennis.playerBWin();
+            tennis.playerBWonPoint();
         }
     }
 });
