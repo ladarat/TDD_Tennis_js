@@ -2,7 +2,7 @@ function Tennis(){
     var scoreA = 0;
     var scoreB = 0;
    this.isScoreLessThan4 = isScoreLessThan4;
-
+   var dueceRule = new DueceRule();
 
     this.score = function() {
         var textScoreA = "";
@@ -14,24 +14,19 @@ function Tennis(){
             3: "FORTY"
         };        
 
-        if(isDuece()){
-            return "DUECE";
-        }
-
-        if(this.isPlayerAAVD()){
-            return "PLAYER A ADV";
-        }
-
-        if(this.isPlayerBAVD()){
-            return "PLAYER B ADV";
-        }
-
-        if(this.isPlayerAWin()){
-            return "PLAYER A WIN";
-        }
-        
-        if(this.isPlayerBWin()){
-            return "PLAYER B WIN";
+        if(this.isTiebreak()){
+            if(this.isPlayerAAVD()){
+                return "PLAYER A ADV";
+            }
+            if(this.isPlayerBAVD()){
+                return "PLAYER B ADV";
+            }
+            if(this.isPlayerAWin()){
+                return "PLAYER A WIN";
+            }
+            if(this.isPlayerBWin()){
+                return "PLAYER B WIN";
+            }
         }
 
         if(this.isScoreLessThan4()){
@@ -39,10 +34,9 @@ function Tennis(){
             textScoreB = scoreMap[scoreB];
             return textScoreA + " " + textScoreB;
         }
-    }
-
-    function isDuece(){
-        return scoreA === scoreB  && scoreA >= 3;
+        
+        return dueceRule.showScore(scoreA, scoreB);
+        
     }
 
     this.isTiebreak = function(){
@@ -50,23 +44,23 @@ function Tennis(){
     }
 
     this.isPlayerAAVD = function(){
-        return this.isTiebreak() && this.scoreADiffB() === 1;
+        return this.scoreADiffB() === 1;
     }
 
     this.isPlayerBAVD = function(){
-        return this.isTiebreak() && this.scoreADiffB() === -1;
+        return this.scoreADiffB() === -1;
     }
 
     this.isPlayerAWin = function(){
-        return this.isTiebreak() && this.scoreADiffB() > 1;
+        return this.scoreADiffB() > 1;
     }
 
     this.isPlayerBWin = function(){
-        return this.isTiebreak() && this.scoreADiffB() < -1;
+        return this.scoreADiffB() < -1;
     }
 
     function isScoreLessThan4(){
-        return scoreA < 4 && scoreB < 4;
+        return scoreA < 4 && scoreB < 4 && !dueceRule.isDuece(scoreA, scoreB);
     }
 
     this.scoreADiffB = function(){
