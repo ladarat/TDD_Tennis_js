@@ -1,8 +1,7 @@
 function Tennis(){
     var scoreA = 0;
     var scoreB = 0;
-   this.isScoreLessThan4 = isScoreLessThan4;
-   var dueceRule = new DueceRule();
+    var dueceRule = new DueceRule();
 
     this.score = function() {
         var textScoreA = "";
@@ -29,7 +28,7 @@ function Tennis(){
             }
         }
 
-        if(this.isScoreLessThan4()){
+        if(isScoreLessThan4()){
             textScoreA = scoreMap[scoreA];
             textScoreB = scoreMap[scoreB];
             return textScoreA + " " + textScoreB;
