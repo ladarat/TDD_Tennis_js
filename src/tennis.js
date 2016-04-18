@@ -18,19 +18,20 @@ function Tennis(){
             return "DUECE";
         }
 
-        if(this.isTiebreak()){
-            if(this.isPlayerAAVD()){
-                return "PLAYER A ADV";
-            }
-            if(this.isPlayerBAVD()){
-                return "PLAYER B ADV";
-            }
-            if(this.isPlayerAWin()){
-                return "PLAYER A WIN";
-            }
-            if(this.isPlayerBWin()){
-                return "PLAYER B WIN";
-            }
+        if(this.isPlayerAAVD()){
+            return "PLAYER A ADV";
+        }
+
+        if(this.isPlayerBAVD()){
+            return "PLAYER B ADV";
+        }
+
+        if(this.isPlayerAWin()){
+            return "PLAYER A WIN";
+        }
+        
+        if(this.isPlayerBWin()){
+            return "PLAYER B WIN";
         }
 
         if(this.isScoreLessThan4()){
@@ -49,19 +50,19 @@ function Tennis(){
     }
 
     this.isPlayerAAVD = function(){
-        return this.scoreADiffB() === 1;
+        return this.isTiebreak() && this.scoreADiffB() === 1;
     }
 
     this.isPlayerBAVD = function(){
-        return this.scoreADiffB() === -1;
+        return this.isTiebreak() && this.scoreADiffB() === -1;
     }
 
     this.isPlayerAWin = function(){
-        return this.scoreADiffB() > 1;
+        return this.isTiebreak() && this.scoreADiffB() > 1;
     }
 
     this.isPlayerBWin = function(){
-        return this.scoreADiffB() < -1;
+        return this.isTiebreak() && this.scoreADiffB() < -1;
     }
 
     function isScoreLessThan4(){
